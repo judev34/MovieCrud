@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{film.nom}} - CINEMA FERME{% endblock %}
+
+{% block content %}
+{% if erreur %}
+<div>
+    <h5>{{erreur}}</h5>
+</div>
+{% else %}
+
+<div class='row'>
+    <div class='col-md-6 mb-5'>
+    <img class="img-fluid" src="/uploads/{{film.image}}" alt="{{film.titre}}">
+    </div>
+    <hr>
+    <div class='col-md-6 mb-5'>
+    <h3>Titre : {{film.titre}}</h3>
+    <h5>Année de production : {{film.annee}}</h5>
+    <h5>Casting</h5>
+        {% for acteur in film.acteurs %}
+            <p>{{acteur.nom}}</p>
+        {% endfor %}
+        <p>Cout du casting : {{film.coutstars}}€</p>
+    </div>
+    <a class='btn btn-block btn-primary' href="{{path('films')}}">Retour</a>
+</div>
+
+{% endif %}
+{% endblock %}
